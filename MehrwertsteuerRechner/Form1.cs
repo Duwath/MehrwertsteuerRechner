@@ -70,19 +70,36 @@ namespace MehrwertsteuerRechner
 
         private void tbxBrutto_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                Rechner(sender, e);
-                Extrarechner(sender, e);
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Rechner(sender, e);
+                    Extrarechner(sender, e);
 
+
+                }
+            }
+            catch
+            {
+                tbxBrutto.Text = "";
+                MessageBox.Show("Falscher Wert eingegeben!");
 
             }
         }
 
         private void tbxBrutto_KeyUp(object sender, KeyEventArgs e)
         {
-            
-            Rechner(sender, e);
+            try {
+
+                Rechner(sender, e);
+            }
+            catch
+            {
+                tbxBrutto.Text = "";
+                MessageBox.Show("Falscher Wert eingegeben!");
+
+            }
         }
     }
 }
