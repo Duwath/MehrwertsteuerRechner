@@ -7,32 +7,121 @@ namespace MehrwertsteuerRechner
             InitializeComponent();
         }
 
-        private void btnRechner_Click(object sender, EventArgs e)
+        private void btnRechner_Click1(object sender, EventArgs e)
         {
             try
             {
-                if (tbxBrutto.Text.Length > 0 )
-                {
-                    //MessageBox.Show(tbxSteuern.Text, "Ich habe einen Button gedrückt!");
-                    Rechner(sender, e);
-                    Extrarechner( sender,  e);
+                if (tbxEingabe.Text.Length > 0)
+                {                  
+                      Rechner(sender, e);
+                      Extrarechner(sender, e);
                 }
+                    
             }
             catch
             {
-                tbxBrutto.Text = "";
+                tbxEingabe.Text = "";
                 MessageBox.Show("Falscher Wert eingegeben!");
 
             }
-
-
-
-
         }
-        private void Rechner( object sender, EventArgs e )
+
+
+        private void Rechner(object sender, EventArgs e)
         {
             double mwst = Convert.ToDouble(tbxSteuern.Text);
-            double brutto = Convert.ToDouble(tbxBrutto.Text);
+            double eingabe = Convert.ToDouble(tbxEingabe.Text);
+            double brutto;
+            double steuer;
+            double netto;
+            if (rbtBrutto.Checked)
+            {
+                brutto = eingabe;
+                netto = brutto / (1 + (mwst / 100));
+                steuer = brutto - netto;
+
+                double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+                double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+                double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+                bruttoges = brutto + bruttoges;
+                nettoges = netto + nettoges;
+                steuerges = steuer + steuerges;
+                tbxNetto.Text = netto.ToString("0.00");
+                tbxSteuern2.Text = steuer.ToString("0.00");
+                tbxBrutto.Text = brutto.ToString("0.00");
+                
+
+
+            }
+            else
+            {
+                netto = eingabe;
+                brutto = netto * (1 + (mwst / 100));
+                steuer = brutto - netto;
+                double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+                double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+                double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+                bruttoges = brutto + bruttoges;
+                nettoges = netto + nettoges;
+                steuerges = steuer + steuerges;
+                tbxNetto.Text = netto.ToString("0.00");
+                tbxSteuern2.Text = steuer.ToString("0.00");
+                tbxBrutto.Text = brutto.ToString("0.00");
+                
+
+            }
+        }
+        private void Extrarechner(object sender, EventArgs e)
+        {
+            double mwst = Convert.ToDouble(tbxSteuern.Text);
+            double brutto = Convert.ToDouble(tbxEingabe.Text);
+            double steuer;
+            double netto;
+            double eingabe = Convert.ToDouble(tbxEingabe.Text);
+            if (rbtBrutto.Checked)
+            {
+                brutto = eingabe;
+                netto = brutto / (1 + (mwst / 100));
+                steuer = brutto - netto;
+
+                double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+                double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+                double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+                bruttoges = brutto + bruttoges;
+                nettoges = netto + nettoges;
+                steuerges = steuer + steuerges;
+                tbxBruttoGes.Text = bruttoges.ToString("0.00");
+                tbxNettoGes.Text = nettoges.ToString("0.00");
+                tbxSteuernGes.Text = steuerges.ToString("0.00");
+
+
+
+            }
+            else
+            {
+                netto = eingabe;
+                brutto = netto * (1 + (mwst / 100));
+                steuer = brutto - netto;
+                double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+                double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+                double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+                bruttoges = brutto + bruttoges;
+                nettoges = netto + nettoges;
+                steuerges = steuer + steuerges;
+                tbxBruttoGes.Text = bruttoges.ToString("0.00");
+                tbxNettoGes.Text = nettoges.ToString("0.00");
+                tbxSteuernGes.Text = steuerges.ToString("0.00");
+
+
+
+            }         
+        }
+
+
+        /*private void Bruttorechner(object sender, EventArgs e)
+        {
+            double mwst = Convert.ToDouble(tbxSteuern.Text);
+            double brutto = Convert.ToDouble(tbxEingabe.Text);
             double steuer;
             double netto;
             netto = brutto / (1 + (mwst / 100));
@@ -43,12 +132,30 @@ namespace MehrwertsteuerRechner
 
             tbxNetto.Text = netto.ToString("0.00");
             tbxSteuern2.Text = steuer.ToString("0.00");
+            tbxBrutto.Text = brutto.ToString("0.00");
 
         }
-        private void Extrarechner(object sender, EventArgs e)
+        private void Nettorechner(object sender, EventArgs e)
         {
             double mwst = Convert.ToDouble(tbxSteuern.Text);
-            double brutto = Convert.ToDouble(tbxBrutto.Text);
+            double netto = Convert.ToDouble(tbxEingabe.Text);
+            double steuer;
+            double brutto;
+            brutto = netto * (1 + (mwst / 100));
+            steuer = brutto - netto;
+            double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+            double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+            double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+
+            tbxNetto.Text = netto.ToString("0.00");
+            tbxSteuern2.Text = steuer.ToString("0.00");
+            tbxBrutto.Text = brutto.ToString("0.00");
+
+        }
+        private void ExtrarechnerBrutto(object sender, EventArgs e)
+        {
+            double mwst = Convert.ToDouble(tbxSteuern.Text);
+            double brutto = Convert.ToDouble(tbxEingabe.Text);
             double steuer;
             double netto;
             netto = brutto / (1 + (mwst / 100));
@@ -66,15 +173,36 @@ namespace MehrwertsteuerRechner
             tbxSteuernGes.Text = steuerges.ToString("0.00");
 
         }
+        private void ExtrarechnerNetto(object sender, EventArgs e)
+        {
+            double mwst = Convert.ToDouble(tbxSteuern.Text);
+            double netto = Convert.ToDouble(tbxEingabe.Text);
+            double steuer;
+            double brutto;
+            brutto = netto * (1 + (mwst / 100));
+            steuer = brutto - netto;
+            double bruttoges = Convert.ToDouble(tbxBruttoGes.Text);
+            double nettoges = Convert.ToDouble(tbxNettoGes.Text);
+            double steuerges = Convert.ToDouble(tbxSteuernGes.Text);
+
+            bruttoges = brutto + bruttoges;
+            nettoges = netto + nettoges;
+            steuerges = steuer + steuerges;
+
+            tbxBruttoGes.Text = bruttoges.ToString("0.00");
+            tbxNettoGes.Text = nettoges.ToString("0.00");
+            tbxSteuernGes.Text = steuerges.ToString("0.00");
+
+        }*/
 
 
-        private void tbxBrutto_KeyDown(object sender, KeyEventArgs e)
+        private void tbxEingabe_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    Rechner(sender, e);
+                    btnRechner_Click1(sender, e);
                     Extrarechner(sender, e);
 
 
@@ -82,24 +210,38 @@ namespace MehrwertsteuerRechner
             }
             catch
             {
-                tbxBrutto.Text = "";
+                tbxEingabe.Text = "";
                 MessageBox.Show("Falscher Wert eingegeben!");
 
             }
         }
 
-        private void tbxBrutto_KeyUp(object sender, KeyEventArgs e)
+        private void tbxEingabe_KeyUp(object sender, KeyEventArgs e)
         {
-            try {
+            try
+            {
 
                 Rechner(sender, e);
             }
             catch
             {
-                tbxBrutto.Text = "";
+                tbxEingabe.Text = "";
                 MessageBox.Show("Falscher Wert eingegeben!");
 
             }
+        }
+
+        private void Resetbutton_Click(object sender, EventArgs e)
+        {
+            tbxBruttoGes.Text = "0";
+            tbxNettoGes.Text = "0";
+            tbxSteuernGes.Text = "0";
+            tbxNetto.Text = "";
+            tbxEingabe.Text = "";
+            tbxSteuern2.Text = "";
+            tbxBrutto.Text = "";
+            tbxEingabe.Focus();
+
         }
     }
 }
