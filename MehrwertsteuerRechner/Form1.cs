@@ -157,14 +157,14 @@ namespace MehrwertsteuerRechner
         private void SchreibeFile(String Schreibarbeit)
         {
             StreamWriter sw = new StreamWriter(MyConfig);
-            sw.WriteLine(tbxSteuern.Text);
+            sw.Write(Schreibarbeit);
             sw.Close();
         }
 
         private void tbxSteuern_Leave(object sender, EventArgs e)
         {
-            SchreibeFile(tbxSteuern.Text);
-            
+            SchreibeFile(SaveData());
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -172,9 +172,40 @@ namespace MehrwertsteuerRechner
             if (!System.IO.File.Exists(MyConfig))
 
             {
-                SchreibeFile("19");
+                SchreibeFile(SaveData());
+            }            
+            string gesamteSave = LeseFile();
+            string[] SaveTeile = gesamteSave.Split(";");
+            tbxSteuern.Text = SaveTeile[0];
+            tbxBruttoGes.Text = SaveTeile[1];
+            tbxNettoGes.Text = SaveTeile[2];
+            tbxSteuernGes.Text = SaveTeile[3];
+            if (SaveTeile[4] == "0")
+            {
+                rbtBrutto.Checked = true;
             }
-            tbxSteuern.Text = LeseFile();
+            else
+            {
+                rbtNetto.Checked = true;
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SchreibeFile(SaveData());
+        }
+        private string SaveData()
+        {
+            string letzteStelle;
+            if (rbtBrutto.Checked)
+            {
+                letzteStelle = "0";
+            }
+            else
+            {
+                letzteStelle = "1";
+            }
+            return tbxSteuern.Text + ";" + tbxBruttoGes.Text + ";" + tbxNettoGes.Text + ";" + tbxSteuernGes.Text + ";" + letzteStelle;
         }
     }
 }

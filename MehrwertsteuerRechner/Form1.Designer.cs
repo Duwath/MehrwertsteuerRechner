@@ -283,6 +283,7 @@
             Name = "Form1";
             Padding = new Padding(10, 0, 0, 0);
             Text = "MwstRechner";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
