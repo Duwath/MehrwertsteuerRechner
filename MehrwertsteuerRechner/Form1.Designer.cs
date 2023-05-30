@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnRechner = new Button();
             label1 = new Label();
             tbxSteuern = new TextBox();
@@ -74,7 +75,7 @@
             // 
             // tbxSteuern
             // 
-            tbxSteuern.Location = new Point(77, 6);
+            tbxSteuern.Location = new Point(87, 6);
             tbxSteuern.Name = "tbxSteuern";
             tbxSteuern.Size = new Size(20, 23);
             tbxSteuern.TabIndex = 2;
@@ -253,6 +254,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gainsboro;
             ClientSize = new Size(312, 481);
             Controls.Add(tbxBrutto);
             Controls.Add(Resetbutton);
@@ -276,6 +278,7 @@
             Controls.Add(label1);
             Controls.Add(btnRechner);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
             Padding = new Padding(10, 0, 0, 0);
