@@ -1,8 +1,10 @@
 using System.Windows.Forms;
+using System.IO;
 namespace MehrwertsteuerRechner
 {
     public partial class Form1 : Form
     {
+        private String MyConfig = "MwStConfig.txt";
         public Form1()
         {
             InitializeComponent();
@@ -142,6 +144,37 @@ namespace MehrwertsteuerRechner
             tbxSteuern2.Text = "";
             tbxBrutto.Text = "";
             tbxEingabe.Focus();
+        }
+
+        private string LeseFile()
+        {
+            StreamReader sr = new StreamReader(MyConfig);
+            string GelesenerText = sr.ReadToEnd();
+            sr.Close();
+
+            return GelesenerText;
+        }
+        private void SchreibeFile(String Schreibarbeit)
+        {
+            StreamWriter sw = new StreamWriter(MyConfig);
+            sw.WriteLine(tbxSteuern.Text);
+            sw.Close();
+        }
+
+        private void tbxSteuern_Leave(object sender, EventArgs e)
+        {
+            SchreibeFile(tbxSteuern.Text);
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (!System.IO.File.Exists(MyConfig))
+
+            {
+                SchreibeFile("19");
+            }
+            tbxSteuern.Text = LeseFile();
         }
     }
 }

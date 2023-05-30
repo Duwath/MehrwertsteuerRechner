@@ -58,7 +58,7 @@
             btnRechner.Location = new Point(3, 446);
             btnRechner.Name = "btnRechner";
             btnRechner.Size = new Size(304, 32);
-            btnRechner.TabIndex = 0;
+            btnRechner.TabIndex = 11;
             btnRechner.Text = "Rechne";
             btnRechner.UseVisualStyleBackColor = false;
             btnRechner.Click += btnRechner_Click1;
@@ -78,8 +78,9 @@
             tbxSteuern.Location = new Point(87, 6);
             tbxSteuern.Name = "tbxSteuern";
             tbxSteuern.Size = new Size(20, 23);
-            tbxSteuern.TabIndex = 2;
+            tbxSteuern.TabIndex = 0;
             tbxSteuern.Text = "19";
+            tbxSteuern.Leave += tbxSteuern_Leave;
             // 
             // label2
             // 
@@ -126,7 +127,7 @@
             tbxEingabe.Location = new Point(113, 53);
             tbxEingabe.Name = "tbxEingabe";
             tbxEingabe.Size = new Size(100, 23);
-            tbxEingabe.TabIndex = 8;
+            tbxEingabe.TabIndex = 1;
             tbxEingabe.KeyDown += tbxEingabe_KeyDown;
             tbxEingabe.KeyUp += tbxEingabe_KeyUp;
             // 
@@ -135,21 +136,21 @@
             tbxSteuern2.Location = new Point(113, 196);
             tbxSteuern2.Name = "tbxSteuern2";
             tbxSteuern2.Size = new Size(100, 23);
-            tbxSteuern2.TabIndex = 9;
+            tbxSteuern2.TabIndex = 4;
             // 
             // tbxNetto
             // 
             tbxNetto.Location = new Point(113, 140);
             tbxNetto.Name = "tbxNetto";
             tbxNetto.Size = new Size(100, 23);
-            tbxNetto.TabIndex = 10;
+            tbxNetto.TabIndex = 3;
             // 
             // tbxNettoGes
             // 
             tbxNettoGes.Location = new Point(192, 293);
             tbxNettoGes.Name = "tbxNettoGes";
             tbxNettoGes.Size = new Size(100, 23);
-            tbxNettoGes.TabIndex = 16;
+            tbxNettoGes.TabIndex = 6;
             tbxNettoGes.Text = "0";
             // 
             // tbxSteuernGes
@@ -157,7 +158,7 @@
             tbxSteuernGes.Location = new Point(192, 342);
             tbxSteuernGes.Name = "tbxSteuernGes";
             tbxSteuernGes.Size = new Size(100, 23);
-            tbxSteuernGes.TabIndex = 15;
+            tbxSteuernGes.TabIndex = 7;
             tbxSteuernGes.Text = "0";
             // 
             // tbxBruttoGes
@@ -165,7 +166,7 @@
             tbxBruttoGes.Location = new Point(192, 252);
             tbxBruttoGes.Name = "tbxBruttoGes";
             tbxBruttoGes.Size = new Size(100, 23);
-            tbxBruttoGes.TabIndex = 14;
+            tbxBruttoGes.TabIndex = 5;
             tbxBruttoGes.Text = "0";
             // 
             // label6
@@ -215,7 +216,7 @@
             rbtBrutto.Location = new Point(231, 38);
             rbtBrutto.Name = "rbtBrutto";
             rbtBrutto.Size = new Size(58, 19);
-            rbtBrutto.TabIndex = 18;
+            rbtBrutto.TabIndex = 8;
             rbtBrutto.TabStop = true;
             rbtBrutto.Text = "Brutto";
             rbtBrutto.UseVisualStyleBackColor = true;
@@ -227,7 +228,7 @@
             rbtNetto.Location = new Point(231, 63);
             rbtNetto.Name = "rbtNetto";
             rbtNetto.Size = new Size(55, 19);
-            rbtNetto.TabIndex = 19;
+            rbtNetto.TabIndex = 9;
             rbtNetto.Text = "Netto";
             rbtNetto.UseVisualStyleBackColor = true;
             rbtNetto.CheckedChanged += Rechner;
@@ -237,7 +238,7 @@
             Resetbutton.Location = new Point(6, 417);
             Resetbutton.Name = "Resetbutton";
             Resetbutton.Size = new Size(75, 23);
-            Resetbutton.TabIndex = 20;
+            Resetbutton.TabIndex = 10;
             Resetbutton.Text = "Reset";
             Resetbutton.UseVisualStyleBackColor = true;
             Resetbutton.Click += Resetbutton_Click;
@@ -247,7 +248,7 @@
             tbxBrutto.Location = new Point(113, 92);
             tbxBrutto.Name = "tbxBrutto";
             tbxBrutto.Size = new Size(100, 23);
-            tbxBrutto.TabIndex = 21;
+            tbxBrutto.TabIndex = 2;
             // 
             // Form1
             // 
@@ -282,6 +283,7 @@
             Name = "Form1";
             Padding = new Padding(10, 0, 0, 0);
             Text = "MwstRechner";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
