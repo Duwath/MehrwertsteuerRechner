@@ -127,7 +127,6 @@
             tbxEingabe.Name = "tbxEingabe";
             tbxEingabe.Size = new Size(100, 23);
             tbxEingabe.TabIndex = 8;
-            tbxEingabe.Text = "119";
             tbxEingabe.KeyDown += tbxEingabe_KeyDown;
             tbxEingabe.KeyUp += tbxEingabe_KeyUp;
             // 
